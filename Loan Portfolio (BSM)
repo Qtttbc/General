@@ -1,0 +1,24 @@
+/*--+===========================================================================================================================================+
+                                                LOAN PORTFOLIO 
++===========================================================================================================================================+ 
+
+REPLACE FOLLOWING PARAMETERS
+----------
+
+YEAR_MONTH :  202004 
+CURRENCY :  VND,USD 
+BUSINESS_DATE='02-MAY-2020' 
+
+--+===========================================================================================================================================+*/ 
+
+
+
+SELECT FTP_GROUP, CUSTOMER_ID , CONTRACT_ID , CUSTOMER_NAME, VISION_SBU,
+ START_DATE, MATURITY_DATE, CUSTOMER_INTEREST, FTP_RATE_TOTAL, FTP_MARGIN, SOURCE_ID, SUM(BALANCE), SUM(FTP_TOTAL)
+FROM AUTO_FTP_AUDIT_TAB_202005
+WHERE FTP_GROUP IN ('LOAN','OVERD','CREDITCARD')
+AND MIS_CURRENCY='VND'
+AND BALANCE<>0
+AND BUSINESS_DATE='02-MAY-2020' 
+GROUP BY FTP_GROUP,CUSTOMER_ID ,CONTRACT_ID ,CUSTOMER_NAME,
+VISION_SBU,CUSTOMER_INTEREST,FTP_MARGIN,SOURCE_ID,START_DATE,MATURITY_DATE,FTP_RATE_TOTAL
